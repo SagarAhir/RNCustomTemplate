@@ -2,8 +2,26 @@
 
 This is a custom React Native template created to streamline the setup process for new projects. It includes pre-installed libraries, a common folder structure, and configurations to kickstart your development.
 
-###To Iniate project with this template run:
-> npx react-native init {YOUR_PROJECT_NAME} --template https://github.com/SagarAhir/RNCustomTemplate.git 
+### Setting up the Project
+
+To initialize your project using this custom template, click the "Copy" button below:
+
+<button onclick="copyToClipboard()">Copy</button>
+
+<script>
+function copyToClipboard() {
+  const command = 'npx react-native init {YOUR_PROJECT_NAME} --template https://github.com/SagarAhir/RNCustomTemplate.git';
+  const tempInput = document.createElement('input');
+  tempInput.value = command;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand('copy');
+  document.body.removeChild(tempInput);
+  alert('Command copied to clipboard!');
+}
+</script>
+
+
 ## Features
 
 - **Pre-installed useful libraries:**
