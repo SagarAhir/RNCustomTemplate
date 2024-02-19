@@ -30,7 +30,8 @@ This is a custom React Native template created to streamline the setup process f
 2. Navigate to the project directory.
 3. Install dependencies using `npm install` or `yarn install`.
 4. Start your development server using `npm start` or `yarn start`.
-5. Happy coding!
+5. Run `npm run android`,`npm run ios` or `yarn android`, `yarn ios`
+6. Happy coding!
 
 ## Folder Structure
 
