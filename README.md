@@ -50,11 +50,6 @@ npx react-native init {YOUR_PROJECT_NAME} --template https://github.com/SagarAhi
   - utils
   - ...
 
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
