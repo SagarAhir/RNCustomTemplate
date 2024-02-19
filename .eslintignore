@@ -1,7 +1,0 @@
-__tests__/App-test.tsx
-node_modules
-metro.config.js
-babel.config.js
-build
-ios
-android
