@@ -4,7 +4,7 @@ This is a custom React Native template created to streamline the setup process f
 
 ### Setting up the Project
 
-To initialize your project using this custom template, run below command:
+To initialize your project using this custom template, run below command. **Remember to replace `{YOUR_PROJECT_NAME}` with your desired project name**:
 ```
 npx react-native init {YOUR_PROJECT_NAME} --template https://github.com/SagarAhir/RNCustomTemplate.git
 ```
