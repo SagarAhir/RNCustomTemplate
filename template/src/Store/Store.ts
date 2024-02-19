@@ -1,8 +1,8 @@
 import { Tuple, combineReducers, configureStore } from '@reduxjs/toolkit';
-import { counterSlice } from './CounterReducer';
 import logger from 'redux-logger';
 import { persistReducer, persistStore } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CounterReducer from './CounterReducer';
 
 const persistConfig = {
   key: 'root',
@@ -10,7 +10,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  counter: counterSlice,
+  counterSlice: CounterReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -11,10 +11,8 @@ const useDimensionsListener = () => {
       setScreenDimension(screen);
     }
 
-    Dimensions.addEventListener('change', handleDimensionChange);
-    return () => {
-      Dimensions.removeEventListener('change', handleDimensionChange);
-    };
+    const subscription = Dimensions.addEventListener('change', handleDimensionChange);
+    return () => subscription?.remove();
   }, []);
 
   return {
