@@ -2,6 +2,8 @@
 
 This is a custom React Native template created to streamline the setup process for new projects. It includes pre-installed libraries, a common folder structure, and configurations to kickstart your development.
 
+###To Iniate project with this template run:
+> npx react-native init {YOUR_PROJECT_NAME} --template https://github.com/SagarAhir/RNCustomTemplate.git 
 ## Features
 
 - **Pre-installed useful libraries:**
