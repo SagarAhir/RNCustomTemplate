@@ -34,14 +34,14 @@ This is a custom React Native template created to streamline the setup process f
 
 ## Folder Structure
 
-├── src
-│ ├── assets
-│ ├── components
-│ ├── navigation
-│ ├── screens
-│ ├── store
-│ └── utils
-└── ...
++ src
+  - assets
+  - components
+  - navigation
+  - screens
+  - store
+  - utils
+  - ...
 
 
 ## License
