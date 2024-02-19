@@ -43,6 +43,7 @@ This is a custom React Native template created to streamline the setup process f
 │ └── utils
 └── ...
 
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
