@@ -2,6 +2,12 @@
 
 This is a custom React Native template created to streamline the setup process for new projects. It includes pre-installed libraries, a common folder structure, and configurations to kickstart your development.
 
+### Setting up the Project
+
+To initialize your project using this custom template, run below command. **Remember to replace `{YOUR_PROJECT_NAME}` with your desired project name**:
+```
+npx react-native init {YOUR_PROJECT_NAME} --template https://github.com/SagarAhir/RNCustomTemplate.git
+```
 ## Features
 
 - **Pre-installed useful libraries:**
@@ -30,7 +36,8 @@ This is a custom React Native template created to streamline the setup process f
 2. Navigate to the project directory.
 3. Install dependencies using `npm install` or `yarn install`.
 4. Start your development server using `npm start` or `yarn start`.
-5. Happy coding!
+5. Run `npm run android`,`npm run ios` or `yarn android`, `yarn ios`
+6. Happy coding!
 
 ## Folder Structure
 
@@ -42,11 +49,6 @@ This is a custom React Native template created to streamline the setup process f
   - store
   - utils
   - ...
-
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## Contributing
 
