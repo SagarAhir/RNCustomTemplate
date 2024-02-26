@@ -1,121 +1,72 @@
-import { useState, useEffect, useRef } from 'react';
-import { Dimensions, ScaledSize } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 
-const useDimensionsListener = () => {
-  const [screenDimension, setScreenDimension] = useState(Dimensions.get('screen'));
-  const [windowDimension, setWindowDimension] = useState(Dimensions.get('window'));
+const { height: W_HEIGHT, width: W_WIDTH } = Dimensions.get('window');
 
-  useEffect(() => {
-    function handleDimensionChange({ window, screen }: { window: ScaledSize; screen: ScaledSize }) {
-      setWindowDimension(window);
-      setScreenDimension(screen);
-    }
+export const isIPhoneX =
+  Platform.OS === 'ios' && !Platform.isPad
+    ? W_HEIGHT === 780 ||
+      W_WIDTH === 780 ||
+      W_HEIGHT === 812 ||
+      W_WIDTH === 812 ||
+      W_HEIGHT === 844 ||
+      W_WIDTH === 844 ||
+      W_HEIGHT === 896 ||
+      W_WIDTH === 896 ||
+      W_HEIGHT === 926 ||
+      W_WIDTH === 926
+    : false;
 
-    const subscription = Dimensions.addEventListener('change', handleDimensionChange);
-    return () => subscription?.remove();
-  }, []);
+let screenWidth = Dimensions.get('window').width;
+let screenHeight = Dimensions.get('window').height;
 
-  return {
-    screen: screenDimension,
-    window: windowDimension,
-  };
+const { height } = Dimensions.get('screen');
+
+export const widthPx = (widthPercent: number) => {
+  const elemWidth = typeof widthPercent === 'number' ? widthPercent : parseFloat(widthPercent);
+  return (screenWidth * elemWidth) / 100;
 };
 
-type EffectParams = {
-  screen: ScaledSize;
-  window: ScaledSize;
+export const heightPx = (heightPercent: number) => {
+  const elemHeight = typeof heightPercent === 'number' ? heightPercent : parseFloat(heightPercent);
+  return ((screenHeight - Number(getStatusBarHeight().toFixed(0))) * elemHeight) / 100;
 };
 
-type EffectCallback =
-  | ((opts: EffectParams) => () => any)
-  | ((opts: EffectParams) => undefined)
-  | ((opts: EffectParams) => void);
-
-const percentageCalculation = (max: number, val: number) => max * (val / 100);
-
-const fontCalculation = (height: number, width: number, val: number) => {
-  const widthDimension = height > width ? width : height;
-  const aspectRatioBasedHeight = (16 / 9) * widthDimension;
-  return percentageCalculation(
-    Math.sqrt(Math.pow(aspectRatioBasedHeight, 2) + Math.pow(widthDimension, 2)),
-    val,
-  );
+export const font = (font: number) => {
+  const fontSize = typeof font === 'number' ? font : parseFloat(font);
+  return moderateScale(fontSize * 4);
 };
 
-export const useDimensionsChange = (effect: EffectCallback) => {
-  const hasMountRef = useRef(false);
-  const dimensions = useDimensionsListener();
-
-  useEffect(() => {
-    if (hasMountRef.current) {
-      const destroy = effect(dimensions);
-      let cleanUp: any = () => null;
-      if (typeof destroy === 'function') {
-        cleanUp = destroy;
-      }
-      return () => cleanUp();
-    } else {
-      hasMountRef.current = true;
-    }
-  }, [dimensions, effect]);
+export const getStatusBarHeight = () => {
+  return Platform.select({
+    ios: isIPhoneX ? 78 : 20,
+    android: StatusBar?.currentHeight ?? 0 > 24 ? 0 : StatusBar.currentHeight,
+    default: 0,
+  });
 };
 
-export const responsiveHeight = (h: number) => {
-  const { height } = Dimensions.get('window');
-  return percentageCalculation(height, h);
+export const isIPhoneXSeries = () => {
+  return Platform.OS === 'android' ? 0 : isIPhoneX ? 34 : 0;
 };
 
-export const responsiveWidth = (w: number) => {
-  const { width } = Dimensions.get('window');
-  return percentageCalculation(width, w);
+export const fullHeight = (heightPercent: number) => {
+  const elemHeight = typeof heightPercent === 'number' ? heightPercent : parseFloat(heightPercent);
+  return (height * elemHeight) / 100;
 };
 
-export const responsiveFontSize = (f: number) => {
-  const { height, width } = Dimensions.get('window');
-  return fontCalculation(height, width, f);
-};
+export const isAndroidNotch =
+  Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 >= 24 : false;
 
-export const responsiveScreenHeight = (h: number) => {
-  const { height } = Dimensions.get('screen');
-  return percentageCalculation(height, h);
-};
+// ///////////////////////////////////////////////
 
-export const responsiveScreenWidth = (w: number) => {
-  const { width } = Dimensions.get('screen');
-  return percentageCalculation(width, w);
-};
+export const [shortDimension, longDimension] =
+  W_WIDTH < W_HEIGHT ? [W_WIDTH, W_HEIGHT] : [W_HEIGHT, W_WIDTH];
 
-export const responsiveScreenFontSize = (f: number) => {
-  const { height, width } = Dimensions.get('screen');
-  return fontCalculation(height, width, f);
-};
+// guideline size
+const guidelineBaseWidth = 375;
+const guidelineBaseHeight = 812;
 
-export const useResponsiveHeight = (h: number) => {
-  const { height } = useDimensionsListener().window;
-  return percentageCalculation(height, h);
-};
-
-export const useResponsiveWidth = (w: number) => {
-  const { width } = useDimensionsListener().window;
-  return percentageCalculation(width, w);
-};
-
-export const useResponsiveFontSize = (f: number) => {
-  const { height, width } = useDimensionsListener().window;
-  return fontCalculation(height, width, f);
-};
-
-export const useResponsiveScreenHeight = (h: number) => {
-  const { height } = useDimensionsListener().screen;
-  return percentageCalculation(height, h);
-};
-
-export const useResponsiveScreenWidth = (w: number) => {
-  const { width } = useDimensionsListener().screen;
-  return percentageCalculation(width, w);
-};
-
-export const useResponsiveScreenFontSize = (f: number) => {
-  const { height, width } = useDimensionsListener().screen;
-  return fontCalculation(height, width, f);
-};
+export const scale = (size: number) => (shortDimension / guidelineBaseWidth) * size;
+export const verticalScale = (size: number) => (longDimension / guidelineBaseHeight) * size;
+export const moderateScale = (size: number, factor = 0.5) => size + (scale(size) - size) * factor;
+export const WINDOW_HEIGHT = Dimensions.get('window').height;
+export const WINDOW_WIDTH = Dimensions.get('window').width;

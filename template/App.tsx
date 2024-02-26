@@ -1,10 +1,10 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 
 import Navigation from './src/Navigation/Navigation';
-import { persistor, store } from './src/Store/Store';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+import {persistor, store} from './src/Store/Store';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const App = () => {
   return (

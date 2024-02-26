@@ -7,6 +7,7 @@ import CounterReducer from './CounterReducer';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  whitelist: [],
 };
 
 const rootReducer = combineReducers({
