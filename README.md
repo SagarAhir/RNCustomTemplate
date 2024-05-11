@@ -32,12 +32,13 @@ npx react-native init {YOUR_PROJECT_NAME} --template https://github.com/SagarAhi
 
 ## Getting Started
 
-1. Clone this repository.
-2. Navigate to the project directory.
-3. Install dependencies using `npm install` or `yarn install`.
-4. Start your development server using `npm start` or `yarn start`.
-5. Run `npm run android`,`npm run ios` or `yarn android`, `yarn ios`
-6. Happy coding!
+1. To create a new React Native project with a custom template, run the above command. Replace {YOUR_PROJECT_NAME} with your desired project name
+2. Clone this repository.
+3. Navigate to the project directory.
+4. Install dependencies using `npm install` or `yarn install`.
+5. Start your development server using `npm start` or `yarn start`.
+6. Run `npm run android`,`npm run ios` or `yarn android`, `yarn ios`
+7. Happy coding!
 
 ## Folder Structure
 
